@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_search_package"
+        android:title="@string/action_search"
+        app:actionViewClass="android.support.v7.widget.SearchView"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/action_to_top"
+        android:orderInCategory="100"
+        android:title="@string/fbtn_main_action_top"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_search_refresh_package"
+        android:orderInCategory="100"
+        android:title="@string/action_refresh_package"
+        app:showAsAction="never" />
+</menu>

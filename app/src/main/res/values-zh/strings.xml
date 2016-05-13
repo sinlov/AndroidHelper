@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">安卓助手</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">设置</string>
+    <string name="tv_main_info">请选择功能</string>
+    <string name="btn_main_android_package_helper">安卓应用管理助手</string>
+    <string name="fbtn_main_base_info">请推送问题到</string>
+    <string name="fbtn_main_action_issure">推送问题</string>
+    //TODO skip to web issure.
+    <string name="fbtn_main_issure_url">https://github.com/</string>
+    <string name="title_activity_package_helper">应用理工具</string>
+    <string name="content_desc_package_helper_icon">content:desc:img:item:rv:package:helper:icon</string>
+    <string name="tv_item_rv_package_helper_package_name">应用名称</string>
+    <string name="tv_item_rv_package_helper_version_code">版本号</string>
+    <string name="tv_item_rv_package_helper_version_name">版本名称</string>
+    <string name="action_search">搜索</string>
+    <string name="btn_open">打开</string>
+    <string name="toast_info_data_error">数据错误</string>
+    <string name="action_refresh_package">刷新包</string>
+    <string name="title_activity_package_search">应用搜索</string>
+    <string name="toast_info_data_empty">没有数据</string>
+    <string name="fbtn_main_action_down">到底部</string>
+    <string name="fbtn_main_action_top">到顶部</string>
+    <string name="fbtn_main_package_info">到顶部在菜单中</string>
+</resources>
