@@ -22,6 +22,8 @@ import android.widget.Toast;
 import com.sinlov.androidhelper.R;
 import com.sinlov.androidhelper.codewidget.DividerItemDecoration;
 import com.sinlov.androidhelper.module.PackageItem;
+import com.sinlov.androidhelper.utils.ClipboardUtils;
+import com.sinlov.androidhelper.utils.InputMethodUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,12 +44,16 @@ public class PackageSearchActivity extends AppCompatActivity implements BGAOnIte
         if (null != item) {
             skipAppByPackageName(item.getPackageName());
         }
-
     }
 
     @Override
     public void onRVItemClick(ViewGroup viewGroup, View view, int i) {
-
+        PackageItem item = packageItems.get(i);
+        if (null != item) {
+            String packageName = item.getPackageName();
+            ClipboardUtils.copy2Clipboard(this, packageName);
+            Toast.makeText(this, getString(R.string.toast_copy_to_clipboard) + packageName, Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
@@ -256,6 +262,7 @@ public class PackageSearchActivity extends AppCompatActivity implements BGAOnIte
     }
 
     private void skipAppByPackageName(String packageName) {
+        InputMethodUtils.closeInputPan(this);
         startActivity(getPackageManager().getLaunchIntentForPackage(
                 packageName));
     }

@@ -1,16 +1,15 @@
 <resources>
-    <string name="app_name">AndroidHelper</string>
+    //TODO skip to web issure.
+    <string name="fbtn_main_issure_url">https://github.com/sinlov/AndroidHelper/issues</string>
 
+    <string name="app_name">AndroidHelper</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-
     <string name="action_settings">Settings</string>
     <string name="tv_main_info">Please choose Content</string>
     <string name="btn_main_android_package_helper">Android Package Helper</string>
-    <string name="fbtn_main_base_info">Please push issure to</string>
-    <string name="fbtn_main_action_issure">push issure</string>
-    //TODO skip to web issure.
-    <string name="fbtn_main_issure_url">https://github.com/</string>
+    <string name="fbtn_main_base_info">Please push issure to Github</string>
+    <string name="fbtn_main_action_issure">push issure here</string>
     <string name="title_activity_package_helper">PackageHelper</string>
     <string name="content_desc_package_helper_icon">content:desc:img:item:rv:package:helper:icon</string>
     <string name="tv_item_rv_package_helper_package_name">PackageName</string>
@@ -25,4 +24,5 @@
     <string name="fbtn_main_action_top">To Top</string>
     <string name="fbtn_main_action_down">To Bottom</string>
     <string name="fbtn_main_package_info">To top in menu</string>
+    <string name="toast_copy_to_clipboard">Package name has copyed into clipboard\n</string>
 </resources>
