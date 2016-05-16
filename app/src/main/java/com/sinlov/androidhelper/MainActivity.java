@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         initView();
         this.packageListener = new PackageListenByBroadcast(this);
-//        packageListener.set
+        //TODO setting install listener
         packageListener.start();
     }
 
