@@ -32,7 +32,7 @@
     <dimen name="mdl_fab_margin">16dp</dimen>
     <dimen name="mdl_list_item_avatar_size">40dp</dimen>
     <dimen name="mdl_list_item_avatar_size_middle">60dp</dimen>
-    <dimen name="mdl_list_item_avatar_size_large">60dp</dimen>
+    <dimen name="mdl_list_item_avatar_size_large">80dp</dimen>
     <dimen name="mdl_size_tv_ordinary">16sp</dimen>
     <dimen name="mdl_size_tv_mid">18sp</dimen>
     <dimen name="mdl_size_tv_large">20sp</dimen>

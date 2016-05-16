@@ -20,19 +20,24 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.sinlov.androidhelper.HelperInstance;
 import com.sinlov.androidhelper.R;
 import com.sinlov.androidhelper.codewidget.DividerItemDecoration;
 import com.sinlov.androidhelper.module.PackageItem;
+import com.sinlov.androidhelper.utils.AppConfiguration;
 import com.sinlov.androidhelper.utils.ClipboardUtils;
+import com.sinlov.androidhelper.utils.DefaultPackageInstaller;
 import com.sinlov.androidhelper.utils.InputMethodUtils;
+import com.sinlov.androidhelper.utils.PackageListenByBroadcast;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import cn.bingoogolapple.androidcommon.adapter.BGAOnItemChildClickListener;
 import cn.bingoogolapple.androidcommon.adapter.BGAOnRVItemClickListener;
+import cn.bingoogolapple.androidcommon.adapter.BGAOnRVItemLongClickListener;
 
-public class PackageHelperActivity extends AppCompatActivity implements BGAOnItemChildClickListener, BGAOnRVItemClickListener {
+public class PackageHelperActivity extends AppCompatActivity implements BGAOnItemChildClickListener, BGAOnRVItemClickListener, BGAOnRVItemLongClickListener {
 
     public static final int MIN_SEARCH_WORD_SIZE = 2;
 
@@ -61,14 +66,52 @@ public class PackageHelperActivity extends AppCompatActivity implements BGAOnIte
     }
 
     @Override
+    public boolean onRVItemLongClick(ViewGroup viewGroup, View view, int i) {
+        PackageItem item = packageItems.get(i);
+        if (null != item) {
+            String packageName = item.getPackageName();
+            DefaultPackageInstaller.uninstallApk(this, packageName);
+            return true;
+        }
+        return false;
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        AppConfiguration.lockOrientation(this);
         initBaseData();
         initView();
     }
 
     private void initBaseData() {
         packageManager = getPackageManager();
+        HelperInstance.getInstance().setOnPackageListener(new PackageListenByBroadcast.OnPackageListener() {
+            @Override
+            public void onPackageAdded(String packageName) {
+
+            }
+
+            @Override
+            public void onPackageFirstLaunch(String packageName) {
+
+            }
+
+            @Override
+            public void onPackageRestarted(String packageName) {
+
+            }
+
+            @Override
+            public void onPackageReplaced(String packageName) {
+
+            }
+
+            @Override
+            public void onPackageRemoved(String packageName) {
+
+            }
+        });
     }
 
     @Override
@@ -187,6 +230,7 @@ public class PackageHelperActivity extends AppCompatActivity implements BGAOnIte
         adapter = new PackageItemAdapter(recyclerView, packageManager);
         adapter.setOnItemChildClickListener(this);
         adapter.setOnRVItemClickListener(this);
+        adapter.setOnRVItemLongClickListener(this);
         recyclerView.setAdapter(adapter);
         addFullPackageInfo();
     }

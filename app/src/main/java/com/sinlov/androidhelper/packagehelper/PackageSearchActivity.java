@@ -22,7 +22,9 @@ import android.widget.Toast;
 import com.sinlov.androidhelper.R;
 import com.sinlov.androidhelper.codewidget.DividerItemDecoration;
 import com.sinlov.androidhelper.module.PackageItem;
+import com.sinlov.androidhelper.utils.AppConfiguration;
 import com.sinlov.androidhelper.utils.ClipboardUtils;
+import com.sinlov.androidhelper.utils.DefaultPackageInstaller;
 import com.sinlov.androidhelper.utils.InputMethodUtils;
 
 import java.util.ArrayList;
@@ -30,8 +32,9 @@ import java.util.List;
 
 import cn.bingoogolapple.androidcommon.adapter.BGAOnItemChildClickListener;
 import cn.bingoogolapple.androidcommon.adapter.BGAOnRVItemClickListener;
+import cn.bingoogolapple.androidcommon.adapter.BGAOnRVItemLongClickListener;
 
-public class PackageSearchActivity extends AppCompatActivity implements BGAOnItemChildClickListener, BGAOnRVItemClickListener {
+public class PackageSearchActivity extends AppCompatActivity implements BGAOnItemChildClickListener, BGAOnRVItemClickListener, BGAOnRVItemLongClickListener {
 
     private ArrayList<PackageItem> packageItems;
     private PackageManager packageManager;
@@ -57,8 +60,20 @@ public class PackageSearchActivity extends AppCompatActivity implements BGAOnIte
     }
 
     @Override
+    public boolean onRVItemLongClick(ViewGroup viewGroup, View view, int i) {
+        PackageItem item = packageItems.get(i);
+        if (null != item) {
+            String packageName = item.getPackageName();
+            DefaultPackageInstaller.uninstallApk(this, packageName);
+            return true;
+        }
+        return false;
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        AppConfiguration.lockOrientation(this);
         initBaseData();
         initView();
         initPackageShowing();
@@ -172,6 +187,7 @@ public class PackageSearchActivity extends AppCompatActivity implements BGAOnIte
         adapter = new PackageItemAdapter(recyclerView, packageManager);
         adapter.setOnItemChildClickListener(this);
         adapter.setOnRVItemClickListener(this);
+        adapter.setOnRVItemLongClickListener(this);
         recyclerView.setAdapter(adapter);
     }
 
@@ -266,4 +282,5 @@ public class PackageSearchActivity extends AppCompatActivity implements BGAOnIte
         startActivity(getPackageManager().getLaunchIntentForPackage(
                 packageName));
     }
+
 }

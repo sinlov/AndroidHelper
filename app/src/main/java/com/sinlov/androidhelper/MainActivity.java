@@ -17,28 +17,63 @@ import android.view.View;
 import android.widget.Button;
 
 import com.sinlov.androidhelper.packagehelper.PackageHelperActivity;
+import com.sinlov.androidhelper.utils.AppConfiguration;
 import com.sinlov.androidhelper.utils.PackageListenByBroadcast;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
 
     private Button btnAndroidPackageHelper;
-    private PackageListenByBroadcast packageListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        AppConfiguration.lockOrientation(this);
+        HelperInstance.getInstance().setPackageListenByBroadcast(this);
+        HelperInstance.getInstance().startListenerPackage();
+        initData();
         initView();
-        this.packageListener = new PackageListenByBroadcast(this);
-        //TODO setting install listener
-        packageListener.start();
+    }
+
+    private void initData() {
+        HelperInstance.getInstance().setOnPackageListener(new PackageListenByBroadcast.OnPackageListener() {
+            @Override
+            public void onPackageAdded(String packageName) {
+
+            }
+
+            @Override
+            public void onPackageFirstLaunch(String packageName) {
+
+            }
+
+            @Override
+            public void onPackageRestarted(String packageName) {
+
+            }
+
+            @Override
+            public void onPackageReplaced(String packageName) {
+
+            }
+
+            @Override
+            public void onPackageRemoved(String packageName) {
+
+            }
+        });
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        packageListener.stop();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        HelperInstance.getInstance().stopListenerPackage();
     }
 
     private void initView() {

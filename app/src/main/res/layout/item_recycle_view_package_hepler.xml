@@ -61,7 +61,6 @@
         android:layout_alignLeft="@+id/tv_item_rv_package_helper_version_code_hint"
         android:layout_alignStart="@+id/tv_item_rv_package_helper_version_code_hint"
         android:layout_below="@+id/tv_item_rv_package_helper_version_code_hint"
-        android:text="1004514"
         android:textSize="@dimen/mdl_size_tv_mid"
         android:textStyle="bold" />
 
@@ -70,7 +69,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/tv_item_rv_package_helper_version_code_hint"
-        android:layout_marginLeft="@dimen/mdl_list_item_avatar_size_middle"
+        android:layout_marginLeft="@dimen/mdl_list_item_avatar_size_large"
         android:layout_toEndOf="@+id/tv_item_rv_package_helper_version_code_hint"
         android:layout_toRightOf="@+id/tv_item_rv_package_helper_version_code_hint"
         android:text="@string/tv_item_rv_package_helper_version_name"
@@ -83,7 +82,6 @@
         android:layout_alignLeft="@+id/tv_item_rv_package_helper_version_name_hint"
         android:layout_alignStart="@+id/tv_item_rv_package_helper_version_name_hint"
         android:layout_below="@+id/tv_item_rv_package_helper_version_name_hint"
-        android:text="2.0.1-123123"
         android:textSize="@dimen/mdl_size_tv_mid"
         android:textStyle="bold" />
 
