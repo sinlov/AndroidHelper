@@ -277,6 +277,12 @@ public class PackageSearchActivity extends AppCompatActivity implements BGAOnIte
         return info.loadLabel(packageManager).toString();
     }
 
+    private void adNewItem() {
+        if (null != packageItems) {
+
+        }
+    }
+
     private void skipAppByPackageName(String packageName) {
         InputMethodUtils.closeInputPan(this);
         startActivity(getPackageManager().getLaunchIntentForPackage(

@@ -24,5 +24,16 @@
         android:id="@+id/btn_main_android_package_helper"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/btn_main_android_package_helper"/>
+        android:text="@string/btn_main_android_package_helper" />
+
+    <TextView
+        android:layout_width="21dp"
+        android:layout_height="28dp"
+        android:textSize="@dimen/mdl_size_tv_ordinary"
+        android:gravity="center_horizontal"
+        android:textColor="@color/md_white"
+        android:singleLine="true"
+        android:maxLength="1"
+        android:background="@drawable/bg_text_flag_triangle_red"
+        android:text="1" />
 </LinearLayout>
