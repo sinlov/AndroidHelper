@@ -17,17 +17,28 @@ import android.view.View;
 import android.widget.Button;
 
 import com.sinlov.androidhelper.packagehelper.PackageHelperActivity;
+import com.sinlov.androidhelper.utils.PackageListenByBroadcast;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
 
     private Button btnAndroidPackageHelper;
+    private PackageListenByBroadcast packageListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initView();
+        this.packageListener = new PackageListenByBroadcast(this);
+//        packageListener.set
+        packageListener.start();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        packageListener.stop();
     }
 
     private void initView() {
