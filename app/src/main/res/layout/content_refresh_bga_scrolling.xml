@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".widget.RefreshBGAScrollingActivity"
-    tools:showIn="@layout/activity_bgarefresh_scrolling">
+    tools:showIn="@layout/activity_refresh_bga_scrolling">
 
     <TextView
         android:layout_width="wrap_content"

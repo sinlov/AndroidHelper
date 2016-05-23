@@ -32,7 +32,7 @@
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_bgarefresh_scrolling" />
+    <include layout="@layout/content_refresh_bga_scrolling" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
