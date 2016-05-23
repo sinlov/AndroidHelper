@@ -1,6 +1,5 @@
 package com.sinlov.androidhelper.widget;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -18,15 +17,17 @@ import com.sinlov.androidhelper.R;
 import com.sinlov.androidhelper.adapter.DataTestRecycleAdapter;
 import com.sinlov.androidhelper.codewidget.BGAAppBarScrollListener;
 import com.sinlov.androidhelper.codewidget.DividerItemDecoration;
+import com.sinlov.androidhelper.codewidget.OnBGAAppBarDelegateListener;
 import com.sinlov.androidhelper.module.DataTestItem;
+import com.sinlov.androidhelper.utils.ThreadUtil;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import cn.bingoogolapple.androidcommon.adapter.BGAOnItemChildClickListener;
 import cn.bingoogolapple.androidcommon.adapter.BGAOnRVItemClickListener;
+import cn.bingoogolapple.refreshlayout.BGANormalRefreshViewHolder;
 import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
-import cn.bingoogolapple.refreshlayout.BGARefreshViewHolder;
 
 public class RefreshBGAScrollingActivity extends AppCompatActivity {
 
@@ -36,12 +37,12 @@ public class RefreshBGAScrollingActivity extends AppCompatActivity {
     private BGARefreshLayout refreshLayout;
     private RecyclerView dataRv;
     private DataTestRecycleAdapter adapter;
-    private int newPageNumber = 0;
-    private int morePageNumber = 0;
+    private int pageNumber = 0;
     private List<DataTestItem> datas;
     private String title;
     private String content;
     private AppBarLayout appBar;
+    private View rvFooterView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,13 +73,14 @@ public class RefreshBGAScrollingActivity extends AppCompatActivity {
         this.appBar = (AppBarLayout) findViewById(R.id.app_bar_bga_scrolling);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     private void initRefreshView() {
         refreshLayout = (BGARefreshLayout) findViewById(R.id.bga_rel_scrolling_in_nested);
-        refreshLayout.setDelegate(new ScrollingDelegate());
-        refreshLayout.setRefreshViewHolder(new NormalRefreshViewHolder(this, true));
+        rvFooterView = findViewById(R.id.rv_refresh_scrolling_root);
+        BGANormalRefreshViewHolder refreshViewHolder = new BGANormalRefreshViewHolder(this, true);
         dataRv = (RecyclerView) findViewById(R.id.rv_refresh_scrolling);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -91,7 +93,7 @@ public class RefreshBGAScrollingActivity extends AppCompatActivity {
         adapter = new DataTestRecycleAdapter(dataRv);
         adapter.setOnRVItemClickListener(new OnRvItemClickListener());
         adapter.setOnItemChildClickListener(new OnRvItemChildClickListener());
-        dataRv.addOnScrollListener(new BGAAppBarScrollListener(appBar, refreshLayout, dataRv));
+        dataRv.addOnScrollListener(new BGAAppBarScrollListener(appBar, refreshLayout, refreshViewHolder, dataRv, new BGAAppBarDelegateListener()));
         dataRv.setAdapter(adapter);
         testDataInit();
     }
@@ -105,7 +107,7 @@ public class RefreshBGAScrollingActivity extends AppCompatActivity {
     }
 
     private void addMoreData() {
-        int changeNum = morePageNumber * 10;
+        int changeNum = pageNumber * 10;
         datas.clear();
         for (int i = 0; i < PAGE_SIZE; i++) {
             datas.add(new DataTestItem(title + (i + changeNum), content));
@@ -114,11 +116,12 @@ public class RefreshBGAScrollingActivity extends AppCompatActivity {
     }
 
     private void refreshData() {
-        morePageNumber = 0;
+        pageNumber = 0;
         datas.clear();
         for (int i = 0; i < PAGE_SIZE; i++) {
             datas.add(new DataTestItem(title + i, content));
         }
+        adapter.clear();
         adapter.addNewDatas(datas);
     }
 
@@ -130,25 +133,6 @@ public class RefreshBGAScrollingActivity extends AppCompatActivity {
         initFloatingButton();
     }
 
-    private class ScrollingDelegate implements BGARefreshLayout.BGARefreshLayoutDelegate {
-        @Override
-        public void onBGARefreshLayoutBeginRefreshing(BGARefreshLayout refreshLayout) {
-            Log.d(TAG, "测试自定义 onBGARefreshLayout Begin Refreshing 被调用");
-        }
-
-        @Override
-        public boolean onBGARefreshLayoutBeginLoadingMore(BGARefreshLayout refreshLayout) {
-            Log.d(TAG, "测试自定义 onBGARefreshLayout Begin LoadingMore 被调用 morePageNumber: " + morePageNumber);
-            morePageNumber++;
-            if (morePageNumber > PAGE_LAST) {
-                refreshLayout.endLoadingMore();
-                showToast("没有更多数据了");
-                return false;
-            }
-
-            return false;
-        }
-    }
 
     private class OnRvItemClickListener implements BGAOnRVItemClickListener {
         @Override
@@ -164,51 +148,6 @@ public class RefreshBGAScrollingActivity extends AppCompatActivity {
         }
     }
 
-    private class NormalRefreshViewHolder extends BGARefreshViewHolder {
-        /**
-         * @param context
-         * @param isLoadingMoreEnabled 上拉加载更多是否可用
-         */
-        public NormalRefreshViewHolder(Context context, boolean isLoadingMoreEnabled) {
-            super(context, isLoadingMoreEnabled);
-        }
-
-        @Override
-        public View getRefreshHeaderView() {
-            return null;
-        }
-
-        @Override
-        public void handleScale(float scale, int moveYDistance) {
-
-        }
-
-        @Override
-        public void changeToIdle() {
-
-        }
-
-        @Override
-        public void changeToPullDown() {
-
-        }
-
-        @Override
-        public void changeToReleaseRefresh() {
-
-        }
-
-        @Override
-        public void changeToRefreshing() {
-
-        }
-
-        @Override
-        public void onEndRefreshing() {
-
-        }
-    }
-
     private class OnDefineScrollListener extends RecyclerView.OnScrollListener {
         @Override
         public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
@@ -218,6 +157,42 @@ public class RefreshBGAScrollingActivity extends AppCompatActivity {
         @Override
         public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
 //            Log.d(TAG, "测试自定义 onScrolled 被调用");
+        }
+    }
+
+    private class BGAAppBarDelegateListener implements OnBGAAppBarDelegateListener {
+        @Override
+        public boolean onBGARefreshLayoutRefreshing(final BGARefreshLayout refreshLayout) {
+            ThreadUtil.runInUIThread(new Runnable() {
+                @Override
+                public void run() {
+                    refreshData();
+                    refreshLayout.endRefreshing();
+                }
+            }, 3000l);
+            return true;
+        }
+
+        @Override
+        public boolean onBGARefreshLayoutLoadingMore(final BGARefreshLayout refreshLayout) {
+            Log.w(TAG, "测试自定义 onBGARefreshLayout Begin LoadingMore 被调用 pageNumber: " + pageNumber);
+            rvFooterView.setVisibility(View.VISIBLE);
+            if (pageNumber > PAGE_LAST) {
+                refreshLayout.endLoadingMore();
+                showToast("没有更多数据了");
+                return false;
+            } else {
+                pageNumber++;
+                ThreadUtil.runInUIThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        addMoreData();
+                        rvFooterView.setVisibility(View.GONE);
+                        refreshLayout.endLoadingMore();
+                    }
+                }, 3000l);
+                return true;
+            }
         }
     }
 }
