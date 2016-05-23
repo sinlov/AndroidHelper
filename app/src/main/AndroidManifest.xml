@@ -41,6 +41,24 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".packagehelper.PackageHelperActivity" />
         </activity>
+        <activity
+            android:name=".widget.XMLIconActivity"
+            android:label="@string/title_activity_xmlicon"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.sinlov.androidhelper.MainActivity" />
+        </activity>
+        <activity
+            android:name=".widget.RefreshBGAScrollingActivity"
+            android:label="@string/title_activity_bgarefresh_scrolling"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.sinlov.androidhelper.MainActivity" />
+        </activity>
     </application>
 
 </manifest>

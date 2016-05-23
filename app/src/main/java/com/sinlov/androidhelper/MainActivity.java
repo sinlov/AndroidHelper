@@ -19,6 +19,8 @@ import android.widget.Button;
 import com.sinlov.androidhelper.packagehelper.PackageHelperActivity;
 import com.sinlov.androidhelper.utils.AppConfiguration;
 import com.sinlov.androidhelper.utils.PackageListenByBroadcast;
+import com.sinlov.androidhelper.widget.RefreshBGAScrollingActivity;
+import com.sinlov.androidhelper.widget.XMLIconActivity;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
@@ -197,5 +199,13 @@ public class MainActivity extends AppCompatActivity
 
     private void skip2Activity(Class<?> cls) {
         startActivity(new Intent(MainActivity.this, cls));
+    }
+
+    public void onXMLIcon(View view) {
+        skip2Activity(XMLIconActivity.class);
+    }
+
+    public void onRefreshBGAScrolling(View view) {
+        skip2Activity(RefreshBGAScrollingActivity.class);
     }
 }

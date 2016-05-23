@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.sinlov.androidhelper.widget.XMLIconActivity"
+    tools:showIn="@layout/activity_xmlicon">
+
+
+    <TextView
+        android:layout_width="21dp"
+        android:layout_height="28dp"
+        android:background="@drawable/bg_text_flag_triangle_red"
+        android:gravity="center_horizontal"
+        android:maxLength="1"
+        android:singleLine="true"
+        android:text="1"
+        android:textColor="@color/md_white"
+        android:textSize="@dimen/mdl_size_tv_ordinary" />
+
+</RelativeLayout>
