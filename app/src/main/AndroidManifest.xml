@@ -43,7 +43,7 @@
         </activity>
         <activity
             android:name=".widget.XMLIconActivity"
-            android:label="@string/title_activity_xmlicon"
+            android:label="@string/title_activity_xml_icon"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
@@ -52,7 +52,7 @@
         </activity>
         <activity
             android:name=".widget.RefreshBGAScrollingActivity"
-            android:label="@string/title_activity_bgarefresh_scrolling"
+            android:label="@string/title_activity_refresh_bga_scrolling"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
