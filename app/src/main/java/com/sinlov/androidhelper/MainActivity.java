@@ -19,8 +19,7 @@ import android.widget.Button;
 import com.sinlov.androidhelper.packagehelper.PackageHelperActivity;
 import com.sinlov.androidhelper.utils.AppConfiguration;
 import com.sinlov.androidhelper.utils.PackageListenByBroadcast;
-import com.sinlov.androidhelper.widget.RefreshBGAScrollingActivity;
-import com.sinlov.androidhelper.widget.XMLIconActivity;
+import com.sinlov.androidhelper.widget.WidgetActivity;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
@@ -90,7 +89,7 @@ public class MainActivity extends AppCompatActivity
                             .setAction(getString(R.string.fbtn_main_action_issure), new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
-                                    Intent intent=new Intent();
+                                    Intent intent = new Intent();
                                     intent.setAction(Intent.ACTION_VIEW);
                                     intent.setData(Uri.parse(getString(R.string.fbtn_main_issure_url)));
                                     startActivity(intent);
@@ -201,11 +200,8 @@ public class MainActivity extends AppCompatActivity
         startActivity(new Intent(MainActivity.this, cls));
     }
 
-    public void onXMLIcon(View view) {
-        skip2Activity(XMLIconActivity.class);
-    }
 
-    public void onRefreshBGAScrolling(View view) {
-        skip2Activity(RefreshBGAScrollingActivity.class);
+    public void onWidget(View view) {
+        skip2Activity(WidgetActivity.class);
     }
 }

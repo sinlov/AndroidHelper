@@ -42,8 +42,9 @@
                 android:value=".packagehelper.PackageHelperActivity" />
         </activity>
         <activity
-            android:name=".widget.XMLIconActivity"
-            android:label="@string/title_activity_xml_icon"
+            android:name=".widget.WidgetActivity"
+            android:label="@string/title_activity_widget"
+            android:launchMode="singleTask"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
@@ -51,14 +52,26 @@
                 android:value="com.sinlov.androidhelper.MainActivity" />
         </activity>
         <activity
-            android:name=".widget.RefreshBGAScrollingActivity"
-            android:label="@string/title_activity_refresh_bga_scrolling"
-            android:parentActivityName=".MainActivity"
+            android:name=".widget.XMLIconActivity"
+            android:label="@string/title_activity_xml_icon"
+            android:launchMode="singleTask"
+            android:parentActivityName=".widget.WidgetActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.sinlov.androidhelper.MainActivity" />
+                android:value="com.sinlov.androidhelper.widget.WidgetActivity" />
         </activity>
+        <activity
+            android:name=".widget.RefreshBGAScrollingActivity"
+            android:label="@string/title_activity_refresh_bga_scrolling"
+            android:launchMode="singleTask"
+            android:parentActivityName=".widget.WidgetActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.sinlov.androidhelper.widget.WidgetActivity" />
+        </activity>
+
     </application>
 
 </manifest>

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">安卓助手</string>
+    <string name="app_name">开发助手</string>
     <string name="fbtn_main_issure_url">https://github.com/sinlov/AndroidHelper/issues</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -23,4 +23,5 @@
     <string name="fbtn_main_action_top">到顶部</string>
     <string name="fbtn_main_package_info">到顶部在菜单中</string>
     <string name="toast_copy_to_clipboard">包名已经拷贝到剪切板\n</string>
+    <string name="btn_main_widget">视图控件库</string>
 </resources>

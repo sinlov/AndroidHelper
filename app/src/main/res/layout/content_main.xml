@@ -27,16 +27,10 @@
         android:text="@string/btn_main_android_package_helper" />
 
     <Button
-        android:id="@+id/btn_main_widget_xml_icon"
+        android:id="@+id/btn_main_widget"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="onXMLIcon"
-        android:text="@string/btn_main_widget_xml_icon" />
+        android:onClick="onWidget"
+        android:text="@string/btn_main_widget"
+        android:layout_height="wrap_content" />
 
-    <Button
-        android:id="@+id/btn_main_refresh_bga_scrolling"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="onRefreshBGAScrolling"
-        android:text="@string/btn_main_refresh_bga_scrolling" />
 </LinearLayout>

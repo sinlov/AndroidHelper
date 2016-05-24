@@ -30,6 +30,8 @@
     <string name="toast_copy_to_clipboard">Package name has copy into clipboard\n</string>
     <string name="title_activity_xml_icon">XMLIconActivity</string>
     <string name="title_activity_refresh_bga_scrolling">RefreshBGAScrollingActivity</string>
-    <string name="btn_main_widget_xml_icon">XML Icon</string>
-    <string name="btn_main_refresh_bga_scrolling">BGA Scrolling Demo</string>
+    <string name="btn_widget_xml_icon">XML Icon</string>
+    <string name="btn_refresh_bga_scrolling">BGA Scrolling Demo</string>
+    <string name="title_activity_widget">WidgetActivity</string>
+    <string name="btn_main_widget">Widget</string>
 </resources>
