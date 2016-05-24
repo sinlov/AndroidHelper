@@ -1,4 +1,4 @@
-package com.sinlov.androidhelper.packagehelper;
+package com.sinlov.androidhelper.ui.packagehelper;
 
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;

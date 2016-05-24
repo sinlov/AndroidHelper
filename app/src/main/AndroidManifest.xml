@@ -22,7 +22,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".packagehelper.PackageHelperActivity"
+            android:name=".ui.packagehelper.PackageHelperActivity"
             android:label="@string/title_activity_package_helper"
             android:launchMode="singleTask"
             android:parentActivityName=".MainActivity"
@@ -32,17 +32,17 @@
                 android:value=".MainActivity" />
         </activity>
         <activity
-            android:name=".packagehelper.PackageSearchActivity"
+            android:name=".ui.packagehelper.PackageSearchActivity"
             android:label="@string/title_activity_package_search"
             android:launchMode="singleTask"
-            android:parentActivityName=".packagehelper.PackageHelperActivity"
+            android:parentActivityName=".ui.packagehelper.PackageHelperActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".packagehelper.PackageHelperActivity" />
+                android:value=".ui.packagehelper.PackageHelperActivity" />
         </activity>
         <activity
-            android:name=".widget.WidgetActivity"
+            android:name=".ui.widget.WidgetActivity"
             android:label="@string/title_activity_widget"
             android:launchMode="singleTask"
             android:parentActivityName=".MainActivity"
@@ -52,24 +52,24 @@
                 android:value="com.sinlov.androidhelper.MainActivity" />
         </activity>
         <activity
-            android:name=".widget.XMLIconActivity"
+            android:name=".ui.widget.XMLIconActivity"
             android:label="@string/title_activity_xml_icon"
             android:launchMode="singleTask"
-            android:parentActivityName=".widget.WidgetActivity"
+            android:parentActivityName=".ui.widget.WidgetActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.sinlov.androidhelper.widget.WidgetActivity" />
+                android:value=".ui.widget.WidgetActivity" />
         </activity>
         <activity
-            android:name=".widget.RefreshBGAScrollingActivity"
+            android:name=".ui.widget.RefreshBGAScrollingActivity"
             android:label="@string/title_activity_refresh_bga_scrolling"
             android:launchMode="singleTask"
-            android:parentActivityName=".widget.WidgetActivity"
+            android:parentActivityName=".ui.widget.WidgetActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.sinlov.androidhelper.widget.WidgetActivity" />
+                android:value=".ui.widget.WidgetActivity" />
         </activity>
 
     </application>

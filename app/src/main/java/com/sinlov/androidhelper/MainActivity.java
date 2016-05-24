@@ -9,18 +9,18 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.sinlov.androidhelper.packagehelper.PackageHelperActivity;
+import com.sinlov.androidhelper.ui.SupperAppCompatActivity;
+import com.sinlov.androidhelper.ui.packagehelper.PackageHelperActivity;
+import com.sinlov.androidhelper.ui.widget.WidgetActivity;
 import com.sinlov.androidhelper.utils.AppConfiguration;
 import com.sinlov.androidhelper.utils.PackageListenByBroadcast;
-import com.sinlov.androidhelper.widget.WidgetActivity;
 
-public class MainActivity extends AppCompatActivity
+public class MainActivity extends SupperAppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
 

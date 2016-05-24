@@ -1,10 +1,9 @@
-package com.sinlov.androidhelper.widget;
+package com.sinlov.androidhelper.ui.widget;
 
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -19,6 +18,7 @@ import com.sinlov.androidhelper.codewidget.BGAAppBarScrollListener;
 import com.sinlov.androidhelper.codewidget.DividerItemDecoration;
 import com.sinlov.androidhelper.codewidget.OnBGAAppBarDelegateListener;
 import com.sinlov.androidhelper.module.DataTestItem;
+import com.sinlov.androidhelper.ui.SupperAppCompatActivity;
 import com.sinlov.androidhelper.utils.ThreadUtil;
 
 import java.util.ArrayList;
@@ -29,7 +29,7 @@ import cn.bingoogolapple.androidcommon.adapter.BGAOnRVItemClickListener;
 import cn.bingoogolapple.refreshlayout.BGANormalRefreshViewHolder;
 import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
 
-public class RefreshBGAScrollingActivity extends AppCompatActivity {
+public class RefreshBGAScrollingActivity extends SupperAppCompatActivity {
 
     private final static String TAG = RefreshBGAScrollingActivity.class.getCanonicalName();
     public static final int PAGE_SIZE = 10;

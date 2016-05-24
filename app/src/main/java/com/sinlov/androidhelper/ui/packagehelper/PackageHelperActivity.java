@@ -1,4 +1,4 @@
-package com.sinlov.androidhelper.packagehelper;
+package com.sinlov.androidhelper.ui.packagehelper;
 
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
@@ -9,7 +9,6 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
@@ -24,6 +23,7 @@ import com.sinlov.androidhelper.HelperInstance;
 import com.sinlov.androidhelper.R;
 import com.sinlov.androidhelper.codewidget.DividerItemDecoration;
 import com.sinlov.androidhelper.module.PackageItem;
+import com.sinlov.androidhelper.ui.SupperAppCompatActivity;
 import com.sinlov.androidhelper.utils.AppConfiguration;
 import com.sinlov.androidhelper.utils.ClipboardUtils;
 import com.sinlov.androidhelper.utils.DefaultPackageInstaller;
@@ -37,7 +37,7 @@ import cn.bingoogolapple.androidcommon.adapter.BGAOnItemChildClickListener;
 import cn.bingoogolapple.androidcommon.adapter.BGAOnRVItemClickListener;
 import cn.bingoogolapple.androidcommon.adapter.BGAOnRVItemLongClickListener;
 
-public class PackageHelperActivity extends AppCompatActivity implements BGAOnItemChildClickListener, BGAOnRVItemClickListener, BGAOnRVItemLongClickListener {
+public class PackageHelperActivity extends SupperAppCompatActivity implements BGAOnItemChildClickListener, BGAOnRVItemClickListener, BGAOnRVItemLongClickListener {
 
     public static final int MIN_SEARCH_WORD_SIZE = 2;
 
