@@ -176,12 +176,13 @@ public class RefreshBGAScrollingActivity extends AppCompatActivity {
         @Override
         public boolean onBGARefreshLayoutLoadingMore(final BGARefreshLayout refreshLayout) {
             Log.w(TAG, "测试自定义 onBGARefreshLayout Begin LoadingMore 被调用 pageNumber: " + pageNumber);
-            rvFooterView.setVisibility(View.VISIBLE);
             if (pageNumber > PAGE_LAST) {
                 refreshLayout.endLoadingMore();
                 showToast("没有更多数据了");
+                rvFooterView.setVisibility(View.GONE);
                 return false;
             } else {
+                rvFooterView.setVisibility(View.VISIBLE);
                 pageNumber++;
                 ThreadUtil.runInUIThread(new Runnable() {
                     @Override
