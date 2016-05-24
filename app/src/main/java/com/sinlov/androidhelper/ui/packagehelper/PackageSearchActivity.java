@@ -1,6 +1,5 @@
 package com.sinlov.androidhelper.ui.packagehelper;
 
-import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -26,6 +25,7 @@ import com.sinlov.androidhelper.utils.AppConfiguration;
 import com.sinlov.androidhelper.utils.ClipboardUtils;
 import com.sinlov.androidhelper.utils.DefaultPackageInstaller;
 import com.sinlov.androidhelper.utils.InputMethodUtils;
+import com.sinlov.androidhelper.utils.PMPackageUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -249,7 +249,7 @@ public class PackageSearchActivity extends SupperAppCompatActivity implements BG
     }
 
     private ArrayList<PackageItem> getFullPackageList() {
-        List<PackageInfo> packageList = packageManager.getInstalledPackages(PackageManager.GET_PERMISSIONS);
+        List<PackageInfo> packageList = PMPackageUtils.getFullPackageInfo(packageManager);
         if (null != packageList) {
             packageItems = new ArrayList<>();
             int i = 0;
@@ -260,7 +260,7 @@ public class PackageSearchActivity extends SupperAppCompatActivity implements BG
                     item.setId(i);
                     item.setVc(pm.versionCode);
                     item.setPackageName(pm.packageName);
-                    item.setAppName(getAppName(pm.packageName));
+                    item.setAppName(PMPackageUtils.getAppName(packageManager, pm.packageName));
                     item.setVersionName(pm.versionName);
                     packageItems.add(item);
                     i++;
@@ -272,11 +272,6 @@ public class PackageSearchActivity extends SupperAppCompatActivity implements BG
         return packageItems;
     }
 
-    private String getAppName(String packName) throws PackageManager.NameNotFoundException {
-        ApplicationInfo info = packageManager.getApplicationInfo(packName, 0);
-        return info.loadLabel(packageManager).toString();
-    }
-
     private void adNewItem() {
         if (null != packageItems) {
 
@@ -285,8 +280,7 @@ public class PackageSearchActivity extends SupperAppCompatActivity implements BG
 
     private void skipAppByPackageName(String packageName) {
         InputMethodUtils.closeInputPan(this);
-        startActivity(getPackageManager().getLaunchIntentForPackage(
-                packageName));
+        PMPackageUtils.skipAppByPackageName(this, packageName);
     }
 
 }

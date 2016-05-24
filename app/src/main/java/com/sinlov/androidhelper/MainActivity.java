@@ -10,6 +10,7 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -39,7 +40,7 @@ public class MainActivity extends SupperAppCompatActivity
         HelperInstance.getInstance().setOnPackageListener(new PackageListenByBroadcast.OnPackageListener() {
             @Override
             public void onPackageAdded(String packageName) {
-
+                Log.d("onPackageAdded", packageName);
             }
 
             @Override
@@ -54,12 +55,12 @@ public class MainActivity extends SupperAppCompatActivity
 
             @Override
             public void onPackageReplaced(String packageName) {
-
+                Log.d("onPackageReplaced", packageName);
             }
 
             @Override
             public void onPackageRemoved(String packageName) {
-
+                Log.d("onPackageRemoved", packageName);
             }
         });
     }
