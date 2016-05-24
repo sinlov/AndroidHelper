@@ -47,8 +47,13 @@ public class RefreshBGAScrollingActivity extends SupperAppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_refresh_bga_scrolling);
+        initBaseData();
         initView();
+    }
 
+    private void initBaseData() {
+        title = getResources().getString(R.string.str_test_title);
+        content = getResources().getString(R.string.str_test_content);
     }
 
     private void initFloatingButton() {
@@ -68,7 +73,6 @@ public class RefreshBGAScrollingActivity extends SupperAppCompatActivity {
         this.appBar = (AppBarLayout) findViewById(R.id.app_bar_bga_scrolling);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
@@ -121,8 +125,6 @@ public class RefreshBGAScrollingActivity extends SupperAppCompatActivity {
     }
 
     private void initView() {
-        title = getString(R.string.str_test_title);
-        content = getString(R.string.str_test_content);
         initToolBar();
         initRefreshView();
         initFloatingButton();
@@ -132,14 +134,16 @@ public class RefreshBGAScrollingActivity extends SupperAppCompatActivity {
     private class OnRvItemClickListener implements BGAOnRVItemClickListener {
         @Override
         public void onRVItemClick(ViewGroup viewGroup, View view, int i) {
-//            Log.d(TAG, "测试自定义 onRVItemClick 被调用 id: " + i);
+            String msg = "测试自定义 onRVItemClick 被调用 id: " + i;
+            Log.d(TAG, msg);
+            showToast(msg);
         }
     }
 
     private class OnRvItemChildClickListener implements BGAOnItemChildClickListener {
         @Override
         public void onItemChildClick(ViewGroup viewGroup, View view, int i) {
-//            Log.d(TAG, "测试自定义 onItemChildClick 被调用 id: " + i);
+            Log.d(TAG, "测试自定义 onItemChildClick 被调用 id: " + i);
         }
     }
 

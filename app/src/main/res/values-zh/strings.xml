@@ -27,8 +27,8 @@
     <string name="nav_item_title_about">关于这个APP</string>
     <string name="nav_main_contact_me">联系我</string>
     <string name="nav_main_share">分享</string>
-    <string name="str_test_title"></string>
-    <string name="str_test_content"></string>
+    <string name="str_test_title">我是测试标题</string>
+    <string name="str_test_content">这个是内容，可能很多多东西，用于测试各种情况行列的情况下，不同的表现\n换行的问题测试一下下\n再换一行</string>
     <string name="tv_nav_main_user_name">默认用户名</string>
     <string name="tv_nav_main_user_desc">默认用户描述</string>
     <string name="title_activity_widget">界面控件库</string>
