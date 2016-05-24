@@ -41,7 +41,7 @@ public class HelperInstance {
         if (null == packageListenByBroadcast) {
             HelperInstance.packageListenByBroadcast = new PackageListenByBroadcast(context.getApplicationContext());
         } else {
-            throw new RuntimeException("Error setting package listener by broadcast by twice!");
+            new RuntimeException("Error setting package listener by broadcast by twice!").printStackTrace();
         }
     }
 

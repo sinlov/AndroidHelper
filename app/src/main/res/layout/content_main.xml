@@ -24,6 +24,7 @@
         android:id="@+id/btn_main_android_package_helper"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:onClick="onPackageHelper"
         android:text="@string/btn_main_android_package_helper" />
 
     <Button

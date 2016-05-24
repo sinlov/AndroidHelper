@@ -24,4 +24,16 @@
     <string name="fbtn_main_package_info">到顶部在菜单中</string>
     <string name="toast_copy_to_clipboard">包名已经拷贝到剪切板\n</string>
     <string name="btn_main_widget">视图控件库</string>
+    <string name="nav_item_title_about">关于这个APP</string>
+    <string name="nav_main_contact_me">联系我</string>
+    <string name="nav_main_share">分享</string>
+    <string name="str_test_title"></string>
+    <string name="str_test_content"></string>
+    <string name="tv_nav_main_user_name">默认用户名</string>
+    <string name="tv_nav_main_user_desc">默认用户描述</string>
+    <string name="title_activity_widget">界面控件库</string>
+    <string name="title_activity_refresh_bga_scrolling">BGA 可滚动菜单混合Demo</string>
+    <string name="title_activity_xml_icon">XML 图标</string>
+    <string name="btn_refresh_bga_scrolling">BGA下拉更新混合Demo</string>
+    <string name="btn_widget_xml_icon">XML 图标</string>
 </resources>

@@ -14,7 +14,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 
 import com.sinlov.androidhelper.packagehelper.PackageHelperActivity;
 import com.sinlov.androidhelper.utils.AppConfiguration;
@@ -22,9 +21,8 @@ import com.sinlov.androidhelper.utils.PackageListenByBroadcast;
 import com.sinlov.androidhelper.widget.WidgetActivity;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
+        implements NavigationView.OnNavigationItemSelectedListener {
 
-    private Button btnAndroidPackageHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,8 +99,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void initContentView() {
-        this.btnAndroidPackageHelper = (Button) findViewById(R.id.btn_main_android_package_helper);
-        btnAndroidPackageHelper.setOnClickListener(this);
+
     }
 
     private void initToolbarView() {
@@ -162,38 +159,24 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        if (id == R.id.nav_main_package_helper) {
+            skip2Activity(PackageHelperActivity.class);
+        } else if (id == R.id.nav_main_widget) {
+            skip2Activity(WidgetActivity.class);
+        } else if (id == R.id.nav_main_image_tools) {
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_main_other_tools) {
 
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.nav_main_share) {
 
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.nav_main_contact_me) {
 
         }
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (null != drawer) {
             drawer.closeDrawer(GravityCompat.START);
         }
         return true;
-    }
-
-    @Override
-    public void onClick(View v) {
-        int id = v.getId();
-        switch (id) {
-            case R.id.btn_main_android_package_helper:
-                skip2Activity(PackageHelperActivity.class);
-                break;
-            default:
-                break;
-
-        }
     }
 
     private void skip2Activity(Class<?> cls) {
@@ -203,5 +186,9 @@ public class MainActivity extends AppCompatActivity
 
     public void onWidget(View view) {
         skip2Activity(WidgetActivity.class);
+    }
+
+    public void onPackageHelper(View view) {
+        skip2Activity(PackageHelperActivity.class);
     }
 }
