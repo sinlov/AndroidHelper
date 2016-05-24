@@ -40,4 +40,5 @@
     <string name="nav_item_title_about">About this APP</string>
     <string name="nav_main_share">Share</string>
     <string name="nav_main_contact_me">Contact me</string>
+    <string name="tv_main_package_hint">last Install Package</string>
 </resources>

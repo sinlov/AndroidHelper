@@ -10,7 +10,6 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.sinlov.androidhelper.R;
 import com.sinlov.androidhelper.adapter.DataTestRecycleAdapter;
@@ -50,10 +49,6 @@ public class RefreshBGAScrollingActivity extends SupperAppCompatActivity {
         setContentView(R.layout.activity_refresh_bga_scrolling);
         initView();
 
-    }
-
-    private void showToast(String content) {
-        Toast.makeText(this.getApplicationContext(), content, Toast.LENGTH_SHORT).show();
     }
 
     private void initFloatingButton() {

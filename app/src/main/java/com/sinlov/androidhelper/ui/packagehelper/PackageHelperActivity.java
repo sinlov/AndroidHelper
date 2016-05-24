@@ -84,12 +84,17 @@ public class PackageHelperActivity extends SupperAppCompatActivity implements BG
         initView();
     }
 
-    private void initBaseData() {
-        packageManager = getPackageManager();
+    @Override
+    protected void onResume() {
+        super.onResume();
+        registeredInstallListener();
+    }
+
+    private void registeredInstallListener() {
         HelperInstance.getInstance().setOnPackageListener(new PackageListenByBroadcast.OnPackageListener() {
             @Override
             public void onPackageAdded(String packageName) {
-
+                showInstallPackage(packageName);
             }
 
             @Override
@@ -104,14 +109,18 @@ public class PackageHelperActivity extends SupperAppCompatActivity implements BG
 
             @Override
             public void onPackageReplaced(String packageName) {
-
+                updatePackage(packageName);
             }
 
             @Override
             public void onPackageRemoved(String packageName) {
-
+                removeUninstallPackage(packageName);
             }
         });
+    }
+
+    private void initBaseData() {
+        packageManager = getPackageManager();
     }
 
     @Override
@@ -220,7 +229,7 @@ public class PackageHelperActivity extends SupperAppCompatActivity implements BG
             supportActionBar.setDisplayHomeAsUpEnabled(true);
         }
         initSnackbar();
-        this.recyclerView = (RecyclerView) findViewById(R.id.rcv_package_helper);
+        this.recyclerView = getViewById(R.id.rcv_package_helper);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
         dividerItemDecoration.setColor(getResources().getColor(R.color.md_light_blue_200));
@@ -282,6 +291,48 @@ public class PackageHelperActivity extends SupperAppCompatActivity implements BG
                 e.printStackTrace();
             }
             adapter.addNewDatas(packageItems);
+        }
+    }
+
+    private void showInstallPackage(String packageName) {
+        PackageInfo info = PMPackageUtils.getOnePackageInfo(packageManager, packageName);
+        if (null != info) {
+            PackageItem pi = new PackageItem();
+            pi.setPackageName(packageName);
+            pi.setVc(info.versionCode);
+            pi.setAppName(PMPackageUtils.getAppName(packageManager, packageName));
+            pi.setVersionName(info.versionName);
+            adapter.addFirstItem(pi);
+        }
+    }
+
+    private void updatePackage(String packageName) {
+        PackageInfo info = PMPackageUtils.getOnePackageInfo(packageManager, packageName);
+        if (null != info) {
+            PackageItem pi = new PackageItem();
+            pi.setPackageName(packageName);
+            pi.setVc(info.versionCode);
+            pi.setAppName(PMPackageUtils.getAppName(packageManager, packageName));
+            pi.setVersionName(info.versionName);
+            PackageItem oldItem = null;
+            List<PackageItem> items = adapter.getDatas();
+            for (int i = 0; i < items.size(); i++) {
+                if (packageName.equals(items.get(i).getPackageName())) {
+                    oldItem = items.get(i);
+                }
+            }
+            if (null != oldItem) {
+                adapter.setItem(oldItem, pi);
+            }
+        }
+    }
+
+    private void removeUninstallPackage(String packageName) {
+        List<PackageItem> itemsList = adapter.getDatas();
+        for (int i = 0; i < itemsList.size(); i++) {
+            if (packageName.equals(itemsList.get(i).getPackageName())) {
+                adapter.removeItem(itemsList.get(i));
+            }
         }
     }
 

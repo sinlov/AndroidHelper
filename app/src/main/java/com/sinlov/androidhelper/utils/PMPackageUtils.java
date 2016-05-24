@@ -41,9 +41,23 @@ public class PMPackageUtils {
         return packageManager.getInstalledPackages(PackageManager.GET_PERMISSIONS);
     }
 
-    public static String getAppName(PackageManager packageManager, String packageName) throws PackageManager.NameNotFoundException {
-        ApplicationInfo info = packageManager.getApplicationInfo(packageName, 0);
-        return info.loadLabel(packageManager).toString();
+    public static PackageInfo getOnePackageInfo(PackageManager packageManager, String packageName) {
+        try {
+            return packageManager.getPackageInfo(packageName, PackageManager.GET_PERMISSIONS);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static String getAppName(PackageManager packageManager, String packageName){
+        try {
+            ApplicationInfo info = packageManager.getApplicationInfo(packageName, 0);
+            return info.loadLabel(packageManager).toString();
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public static Drawable getAppIcon(PackageManager packageManager, String packageName) {

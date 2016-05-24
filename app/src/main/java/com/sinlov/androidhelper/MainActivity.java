@@ -1,6 +1,8 @@
 package com.sinlov.androidhelper;
 
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -9,21 +11,34 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
 
+import com.sinlov.androidhelper.codewidget.DividerItemDecoration;
+import com.sinlov.androidhelper.module.PackageItem;
 import com.sinlov.androidhelper.ui.SupperAppCompatActivity;
 import com.sinlov.androidhelper.ui.packagehelper.PackageHelperActivity;
+import com.sinlov.androidhelper.ui.packagehelper.PackageItemAdapter;
 import com.sinlov.androidhelper.ui.widget.WidgetActivity;
 import com.sinlov.androidhelper.utils.AppConfiguration;
+import com.sinlov.androidhelper.utils.PMPackageUtils;
 import com.sinlov.androidhelper.utils.PackageListenByBroadcast;
+
+import java.util.List;
 
 public class MainActivity extends SupperAppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    private PackageManager packageManager;
+    private TextView tvPackageListHint;
+    private RecyclerView recyclerView;
+    private PackageItemAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,11 +51,21 @@ public class MainActivity extends SupperAppCompatActivity
         initView();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        registeredInstallListener();
+    }
+
     private void initData() {
+        packageManager = getPackageManager();
+    }
+
+    private void registeredInstallListener() {
         HelperInstance.getInstance().setOnPackageListener(new PackageListenByBroadcast.OnPackageListener() {
             @Override
             public void onPackageAdded(String packageName) {
-                Log.d("onPackageAdded", packageName);
+                showInstallPackage(packageName);
             }
 
             @Override
@@ -55,12 +80,12 @@ public class MainActivity extends SupperAppCompatActivity
 
             @Override
             public void onPackageReplaced(String packageName) {
-                Log.d("onPackageReplaced", packageName);
+                updatePackage(packageName);
             }
 
             @Override
             public void onPackageRemoved(String packageName) {
-                Log.d("onPackageRemoved", packageName);
+                removeUninstallPackage(packageName);
             }
         });
     }
@@ -100,7 +125,19 @@ public class MainActivity extends SupperAppCompatActivity
     }
 
     private void initContentView() {
-
+        tvPackageListHint = getViewById(R.id.tv_main_package_hint);
+        recyclerView = getViewById(R.id.rcv_main_package);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
+        dividerItemDecoration.setColor(getResources().getColor(R.color.md_light_blue_200));
+        dividerItemDecoration.setSize(getResources().getDimensionPixelOffset(R.dimen.mdl_divider_height));
+        dividerItemDecoration.setPaddingStart(getResources().getDimensionPixelOffset(R.dimen.mdl_vertical_margin_half));
+        recyclerView.addItemDecoration(dividerItemDecoration);
+        adapter = new PackageItemAdapter(recyclerView, packageManager);
+        adapter.setOnItemChildClickListener(new RVItemChildClickListener());
+        adapter.setOnRVItemClickListener(new RVItemClickListener());
+        adapter.setOnRVItemLongClickListener(new RVItemLongClickListener());
+        recyclerView.setAdapter(adapter);
     }
 
     private void initToolbarView() {
@@ -137,6 +174,74 @@ public class MainActivity extends SupperAppCompatActivity
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
+    }
+
+    private void showInstallPackage(String packageName) {
+        PackageInfo info = PMPackageUtils.getOnePackageInfo(packageManager, packageName);
+        if (null != info) {
+            PackageItem pi = new PackageItem();
+            pi.setPackageName(packageName);
+            pi.setVc(info.versionCode);
+            pi.setAppName(PMPackageUtils.getAppName(packageManager, packageName));
+            pi.setVersionName(info.versionName);
+            adapter.addFirstItem(pi);
+            tvPackageListHint.setVisibility(View.VISIBLE);
+        }
+    }
+
+    private void updatePackage(String packageName) {
+        PackageInfo info = PMPackageUtils.getOnePackageInfo(packageManager, packageName);
+        if (null != info) {
+            PackageItem pi = new PackageItem();
+            pi.setPackageName(packageName);
+            pi.setVc(info.versionCode);
+            pi.setAppName(PMPackageUtils.getAppName(packageManager, packageName));
+            pi.setVersionName(info.versionName);
+            PackageItem oldItem = null;
+            List<PackageItem> items = adapter.getDatas();
+            for (int i = 0; i < items.size(); i++) {
+                if (packageName.equals(items.get(i).getPackageName())) {
+                    oldItem = items.get(i);
+                }
+            }
+            if (null != oldItem) {
+                adapter.setItem(oldItem, pi);
+            }
+            tvPackageListHint.setVisibility(View.VISIBLE);
+        }
+    }
+
+    private void removeUninstallPackage(String packageName) {
+        List<PackageItem> itemsList = adapter.getDatas();
+        for (int i = 0; i < itemsList.size(); i++) {
+            if (packageName.equals(itemsList.get(i).getPackageName())) {
+                adapter.removeItem(itemsList.get(i));
+            }
+        }
+        if (adapter.getDatas().size() == 0) {
+            tvPackageListHint.setVisibility(View.GONE);
+        }
+    }
+
+    private class RVItemChildClickListener implements cn.bingoogolapple.androidcommon.adapter.BGAOnItemChildClickListener {
+        @Override
+        public void onItemChildClick(ViewGroup viewGroup, View view, int i) {
+
+        }
+    }
+
+    private class RVItemClickListener implements cn.bingoogolapple.androidcommon.adapter.BGAOnRVItemClickListener {
+        @Override
+        public void onRVItemClick(ViewGroup viewGroup, View view, int i) {
+
+        }
+    }
+
+    private class RVItemLongClickListener implements cn.bingoogolapple.androidcommon.adapter.BGAOnRVItemLongClickListener {
+        @Override
+        public boolean onRVItemLongClick(ViewGroup viewGroup, View view, int i) {
+            return false;
+        }
     }
 
     @Override
@@ -180,10 +285,10 @@ public class MainActivity extends SupperAppCompatActivity
         return true;
     }
 
+
     private void skip2Activity(Class<?> cls) {
         startActivity(new Intent(MainActivity.this, cls));
     }
-
 
     public void onWidget(View view) {
         skip2Activity(WidgetActivity.class);
