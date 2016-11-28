@@ -1,4 +1,4 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion ANDROID_COMPILE_SDK_VERSION as int
@@ -9,7 +9,10 @@ android {
         targetSdkVersion ANDORID_TARGET_SDK_VERSION as int
         versionCode VERSION_CODE as int
         versionName VERSION_NAME
-        applicationId "com.sinlov.androidhelper"
+
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
     }
     buildTypes {
         release {
@@ -21,15 +24,9 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile 'com.android.support:appcompat-v7:25.0.0'
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:23.3.0'
-    compile 'com.android.support:design:23.3.0'
-    compile 'com.android.support:recyclerview-v7:23.3.0'
-    compile 'com.nineoldandroids:library:2.4.0'
-    //adapter
-    compile 'cn.bingoogolapple:bga-adapter:1.0.9@aar'
-    //refresh layout
-    compile 'cn.bingoogolapple:bga-refreshlayout:1.1.4@aar'
-    //swipe item layout
-    compile 'cn.bingoogolapple:bga-swipeitemlayout:1.0.4@aar'
 }

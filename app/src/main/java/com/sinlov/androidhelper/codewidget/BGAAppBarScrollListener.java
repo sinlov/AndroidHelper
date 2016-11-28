@@ -3,7 +3,6 @@ package com.sinlov.androidhelper.codewidget;
 import android.support.design.widget.AppBarLayout;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 
 import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
 import cn.bingoogolapple.refreshlayout.BGARefreshViewHolder;
@@ -58,9 +57,10 @@ public class BGAAppBarScrollListener extends RecyclerView.OnScrollListener imple
     public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
         isAppBarLayoutOpen = SupportDesignViewUtils.isAppBarLayoutOpen(verticalOffset);
         isAppBarLayoutClose = SupportDesignViewUtils.isAppBarLayoutClose(appBarLayout, verticalOffset);
-        Log.d("onOffsetChanged", "isAppBarLayoutOpen: " + isAppBarLayoutOpen +
-                " |isAppBarLayoutClose: " + isAppBarLayoutClose +
-                " |verticalOffset: " + verticalOffset);
+//        Log.d("onOffsetChanged", "isAppBarLayoutOpen: " + isAppBarLayoutOpen +
+//                " |isAppBarLayoutClose: " + isAppBarLayoutClose +
+//                " |verticalOffset: " + verticalOffset);
+
         dispatchScroll(verticalOffset);
     }
 
