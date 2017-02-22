@@ -71,7 +71,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.widget.WidgetActivity" />
         </activity>
-
+        <activity
+            android:name=".ui.packagesign.PackageSignActivity"
+            android:label="@string/title_activity_package_sign"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.sinlov.androidhelper.MainActivity" />
+        </activity>
     </application>
 
 </manifest>

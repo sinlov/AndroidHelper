@@ -38,6 +38,13 @@
             android:onClick="onWidget"
             android:text="@string/btn_main_widget" />
 
+        <Button
+            android:id="@+id/btn_main_package_sign"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onPackageSign"
+            android:text="@string/btn_main_package_sign" />
+
         <TextView
             android:id="@+id/tv_main_package_hint"
             android:layout_width="wrap_content"

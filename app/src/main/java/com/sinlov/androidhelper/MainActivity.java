@@ -25,6 +25,7 @@ import com.sinlov.androidhelper.module.PackageItem;
 import com.sinlov.androidhelper.ui.SupperAppCompatActivity;
 import com.sinlov.androidhelper.ui.packagehelper.PackageHelperActivity;
 import com.sinlov.androidhelper.ui.packagehelper.PackageItemAdapter;
+import com.sinlov.androidhelper.ui.packagesign.PackageSignActivity;
 import com.sinlov.androidhelper.ui.widget.WidgetActivity;
 import com.sinlov.androidhelper.utils.AppConfiguration;
 import com.sinlov.androidhelper.utils.PMPackageUtils;
@@ -296,5 +297,9 @@ public class MainActivity extends SupperAppCompatActivity
 
     public void onPackageHelper(View view) {
         skip2Activity(PackageHelperActivity.class);
+    }
+
+    public void onPackageSign(View view) {
+        skip2Activity(PackageSignActivity.class);
     }
 }

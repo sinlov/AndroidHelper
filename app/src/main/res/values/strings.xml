@@ -41,4 +41,9 @@
     <string name="nav_main_share">Share</string>
     <string name="nav_main_contact_me">Contact me</string>
     <string name="tv_main_package_hint">last Install Package</string>
+    <string name="btn_main_package_sign">See APK Sign</string>
+    <string name="title_activity_package_sign">Package Sign Check</string>
+    <string name="et_act_package_sign_input">Input want show Sign PackageName</string>
+    <string name="btn_act_package_sign_show_input_package_sign">Show Input Package FB Sign</string>
+    <string name="tv_info_long_touch_can_copy">Tips: long touch can copy</string>
 </resources>
