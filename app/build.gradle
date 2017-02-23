@@ -33,3 +33,6 @@ dependencies {
     //swipe item layout
     compile 'cn.bingoogolapple:bga-swipeitemlayout:1.0.4@aar'
 }
+
+// OutBuildApk_2.0 you can annotation this if network bad!
+//apply from: "https://github.com/sinlov/Gradle_Zoo/raw/master/android-local/OutBuildApk_2.0.gradle"
